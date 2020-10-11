@@ -13,8 +13,4 @@ public class OddNumbersExterminator {
         }
         return evenNumbers;
     }
-
-    public void printEvenNumbers(List<Integer> evenNumbers) {
-        System.out.println(evenNumbers);
-    }
 }
