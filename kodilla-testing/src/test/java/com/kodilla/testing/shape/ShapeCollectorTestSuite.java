@@ -65,7 +65,7 @@ public class ShapeCollectorTestSuite {
             shapeCollector.addFigure(triangle);
 
             //Then
-            Assertions.assertEquals(triangle, shapeCollector.addFigure(triangle));
+            assertEquals(triangle, shapeCollector.addFigure(triangle));
         }
     }
 
@@ -83,7 +83,7 @@ public class ShapeCollectorTestSuite {
             shapeCollector.removeFigure(circle);
 
             //Then
-            Assertions.assertTrue(shapeCollector.removeFigure(circle));
+            assertTrue(shapeCollector.removeFigure(circle));
         }
 
         @Test
@@ -97,7 +97,7 @@ public class ShapeCollectorTestSuite {
             shapeCollector.removeFigure(square);
 
             //Then
-            Assertions.assertTrue(shapeCollector.removeFigure(square));
+            assertTrue(shapeCollector.removeFigure(square));
         }
 
         @Test
@@ -111,7 +111,7 @@ public class ShapeCollectorTestSuite {
             shapeCollector.removeFigure(triangle);
 
             //Then
-            Assertions.assertTrue(shapeCollector.removeFigure(triangle));
+            assertTrue(shapeCollector.removeFigure(triangle));
         }
     }
 
@@ -151,7 +151,7 @@ public class ShapeCollectorTestSuite {
             shapeCollector.getFigure(0);
 
             //Then
-            Assertions.assertEquals(circle, 0);
+            assertEquals(circle, 0);
         }
     }
 }
