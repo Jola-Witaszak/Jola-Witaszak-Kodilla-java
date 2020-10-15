@@ -2,9 +2,6 @@ package com.kodilla.testing.shape;
 
 import org.junit.jupiter.api.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("ShapeCollector Test Suite")
@@ -136,7 +133,7 @@ public class ShapeCollectorTestSuite {
     }
 
     @Nested
-    @DisplayName("Figure retrieval tests")
+    @DisplayName("Figure retrieval tests.")
     class TestGetFigure {
         @Test
         void testGetFigure() {
