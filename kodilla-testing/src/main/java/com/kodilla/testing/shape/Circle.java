@@ -1,22 +1,43 @@
 package com.kodilla.testing.shape;
 
 public class Circle implements Shape {
-    private String name;
-    private int field;
+    private double radius;
 
-    public Circle(String name, int field) {
-        this.name = name;
-        this.field = field;
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Circle circle = (Circle) o;
+
+        return Double.compare(circle.radius, radius) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        long temp = Double.doubleToLongBits(radius);
+        return (int) (temp ^ (temp >>> 32));
+    }
+
+    @Override
+    public String toString() {
+        return "Circle{" +
+                "radius=" + radius +
+                '}';
     }
 
     @Override
     public String getShapeName() {
-        return name;
+        return "circle";
     }
 
     @Override
-    public int getField() {
-        return field;
+    public double getField() {
+        return Math.PI * radius * radius;
     }
 }
 
