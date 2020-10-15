@@ -136,7 +136,7 @@ public class ShapeCollectorTestSuite {
     }
 
     @Nested
-    @DisplayName("Figure retrieval tests")
+    @DisplayName("Figure retrieval tests ")
     class TestGetFigure {
         @Test
         void testGetFigure() {
