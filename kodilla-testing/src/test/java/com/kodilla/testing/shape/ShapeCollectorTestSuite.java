@@ -2,9 +2,6 @@ package com.kodilla.testing.shape;
 
 import org.junit.jupiter.api.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("ShapeCollector Test Suite")
@@ -30,7 +27,7 @@ public class ShapeCollectorTestSuite {
     @DisplayName("Figures addition tests")
     class TestAdditionFigures {
         @Test
-        void testAddFigureCircle() {
+        public void testAddFigureCircle() {
             //Given
             Shape circle = new Circle( 12.5);
             ShapeCollector shapeCollector = new ShapeCollector();
@@ -39,10 +36,11 @@ public class ShapeCollectorTestSuite {
             shapeCollector.addFigure(circle);
 
             //Then
-            assertEquals(circle, shapeCollector.addFigure(circle));
+            assertNull(circle);
+            assertTrue(shapeCollector.showFigures().contains(circle.toString()));
         }
         @Test
-        void testAddFigureSquare() {
+        public void testAddFigureSquare() {
             //Given
             Shape square = new Square(8.0);
             ShapeCollector shapeCollector = new ShapeCollector();
@@ -51,12 +49,13 @@ public class ShapeCollectorTestSuite {
             shapeCollector.addFigure(square);
 
             //Then
-            assertEquals(square, shapeCollector.addFigure(square));
+            assertNull(square);
+            assertTrue(shapeCollector.showFigures().contains(square.toString()));
 
         }
 
         @Test
-        void testAddFigureTriangle() {
+        public void testAddFigureTriangle() {
             //Given
             Shape triangle = new Triangle(4.5, 18.0);
             ShapeCollector shapeCollector = new ShapeCollector();
@@ -65,7 +64,8 @@ public class ShapeCollectorTestSuite {
             shapeCollector.addFigure(triangle);
 
             //Then
-            Assertions.assertEquals(triangle, shapeCollector.addFigure(triangle));
+            assertNull(triangle);
+            assertTrue(shapeCollector.showFigures().contains(triangle.toString()));
         }
     }
 
@@ -73,7 +73,7 @@ public class ShapeCollectorTestSuite {
     @DisplayName("Figures removal tests")
     class TestRemoveFigure {
         @Test
-        void testRemoveFigureCircle() {
+        public void testRemoveFigureCircle() {
             //Given
             Shape circle = new Circle(15.0);
             ShapeCollector shapeCollector = new ShapeCollector();
@@ -83,11 +83,12 @@ public class ShapeCollectorTestSuite {
             shapeCollector.removeFigure(circle);
 
             //Then
-            Assertions.assertTrue(shapeCollector.removeFigure(circle));
+            assertNull(circle);
+            assertFalse(shapeCollector.showFigures().contains(circle.toString()));
         }
 
         @Test
-        void testRemoveFigureSquare() {
+        public void testRemoveFigureSquare() {
             //Given
             Shape square = new Square(12.0);
             ShapeCollector shapeCollector = new ShapeCollector();
@@ -97,21 +98,23 @@ public class ShapeCollectorTestSuite {
             shapeCollector.removeFigure(square);
 
             //Then
-            Assertions.assertTrue(shapeCollector.removeFigure(square));
+            assertNull(square);
+            assertFalse(shapeCollector.showFigures().contains(square.toString()));
         }
 
         @Test
-        void testRemoveFigureTriangle() {
+        public void testRemoveFigureTriangle() {
             //Given
             Shape triangle = new Triangle(6.6, 4.2);
             ShapeCollector shapeCollector = new ShapeCollector();
             shapeCollector.addFigure(triangle);
 
             //When
+            assertNull(triangle);
             shapeCollector.removeFigure(triangle);
 
             //Then
-            Assertions.assertTrue(shapeCollector.removeFigure(triangle));
+            assertFalse(shapeCollector.showFigures().contains(triangle.toString()));
         }
     }
 
@@ -119,7 +122,7 @@ public class ShapeCollectorTestSuite {
     @DisplayName("Returning the names of all figures in the form of one String.")
     class TestShowFigures {
         @Test
-        void testShowFigures() {
+        public void testShowFigures() {
             //Given
             Shape square = new Square( 12.0);
             Shape triangle = new Triangle(8.2, 18.0);
@@ -128,10 +131,10 @@ public class ShapeCollectorTestSuite {
 
             //When
             shapeCollector.showFigures();
-            String expectedResult = "circle, square, triangle";
+            String expectedResult = square + "," + triangle + "," + circle;
 
             //Then
-            Assertions.assertEquals(expectedResult, shapeCollector.showFigures());
+            assertEquals(expectedResult, shapeCollector.showFigures());
         }
     }
 
@@ -139,7 +142,7 @@ public class ShapeCollectorTestSuite {
     @DisplayName("Figure retrieval tests")
     class TestGetFigure {
         @Test
-        void testGetFigure() {
+        public void testGetFigure() {
             //Given
             Shape square = new Square(12.0);
             Shape triangle = new Triangle(8.4, 18.0);
@@ -148,10 +151,10 @@ public class ShapeCollectorTestSuite {
 
             //When
             shapeCollector.addFigure(circle);
-            shapeCollector.getFigure(0);
+            Shape result = shapeCollector.getFigure(0);
 
             //Then
-            Assertions.assertEquals(circle, 0);
+            assertEquals(result, circle);
         }
     }
 }

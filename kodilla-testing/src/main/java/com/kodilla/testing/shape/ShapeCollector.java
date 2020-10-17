@@ -6,7 +6,8 @@ import java.util.List;
 public class ShapeCollector {
     private List<Shape> figures = new ArrayList<>();
 
-    public Shape addFigure(Shape shape) {return null;}
+    public void addFigure(Shape shape) {
+    }
 
     public boolean removeFigure (Shape shape) {
         return false;
@@ -16,7 +17,7 @@ public class ShapeCollector {
         return null;
     }
 
-    public Shape showFigures () {
+    public String showFigures() {
         return null;
     }
 }
