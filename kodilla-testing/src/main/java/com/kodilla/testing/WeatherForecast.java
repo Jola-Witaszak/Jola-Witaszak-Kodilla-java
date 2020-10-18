@@ -19,11 +19,15 @@ public class WeatherForecast {
             return resultMap;
     }
 
-    public double calculateAverageCurrentTemperature(Map<String, Double> resultMap) {
-        return 0.0;
+    public double calculateAverageCurrentTemperature(Map<String, Double> correctTemperaturesMap) {
+       double sumOfTemperatures = 0;
+        for (Map.Entry<String, Double> entry : correctTemperaturesMap.entrySet()) {
+            sumOfTemperatures += entry.getValue();
+        }
+        return sumOfTemperatures / correctTemperaturesMap.size();
     }
 
-    public double calculateMedianCurrentTemperatures(Map<String, Double> resultMap) {
+    public double calculateMedianCurrentTemperatures(Map<String, Double> correctTemperaturesMap) {
         return 0.0;
     }
 

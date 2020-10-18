@@ -46,13 +46,13 @@ public class WeatherForecastTestSuite {
     @Test
     void testCalculateAverageCurrentTemperature() {
         //Given
-        when(temperaturesMock.getTemperatures()).thenReturn(temperaturesMap);
+     //   when(temperaturesMock.getTemperatures()).thenReturn(temperaturesMap);
         WeatherForecast weatherForecast = new WeatherForecast(temperaturesMock);
         //When
         double currentAverageTemperature = weatherForecast.calculateAverageCurrentTemperature(temperaturesMap);
-        double testAverageTemperature = 20.5;
+        double testAverageTemperature = 25.56;
         //Then
-        assertEquals(testAverageTemperature, currentAverageTemperature);
+        assertEquals(testAverageTemperature, currentAverageTemperature,0.01);
     }
 
     @Test
@@ -64,6 +64,6 @@ public class WeatherForecastTestSuite {
         weatherForecast.calculateMedianCurrentTemperatures(temperaturesMap);
         double testMedianTemperature = 25.5;
         //Ten
-        assertEquals(testMedianTemperature, weatherForecast.calculateMedianCurrentTemperatures(temperaturesMap));
+        assertEquals(testMedianTemperature, weatherForecast.calculateMedianCurrentTemperatures(temperaturesMap), 0.01);
     }
 }
