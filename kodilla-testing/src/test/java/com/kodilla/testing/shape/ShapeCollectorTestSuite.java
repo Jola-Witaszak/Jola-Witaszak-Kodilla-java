@@ -2,6 +2,9 @@ package com.kodilla.testing.shape;
 
 import org.junit.jupiter.api.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("ShapeCollector Test Suite")
@@ -31,13 +34,14 @@ public class ShapeCollectorTestSuite {
             //Given
             Shape circle = new Circle( 12.5);
             ShapeCollector shapeCollector = new ShapeCollector();
+            List<Shape> figures = new ArrayList<>();
 
             //When
             shapeCollector.addFigure(circle);
+            shapeCollector.getFigure(0);
 
             //Then
-            assertNull(circle);
-            assertTrue(shapeCollector.showFigures().contains(circle.toString()));
+            assertEquals(circle, shapeCollector.getFigure(0));
         }
         @Test
         public void testAddFigureSquare() {
@@ -47,10 +51,10 @@ public class ShapeCollectorTestSuite {
 
             //When
             shapeCollector.addFigure(square);
+            shapeCollector.getFigure(0);
 
             //Then
-            assertNull(square);
-            assertTrue(shapeCollector.showFigures().contains(square.toString()));
+            assertEquals(square, shapeCollector.getFigure(0));
 
         }
 
@@ -62,10 +66,10 @@ public class ShapeCollectorTestSuite {
 
             //When
             shapeCollector.addFigure(triangle);
+            shapeCollector.getFigure(0);
 
             //Then
-            assertNull(triangle);
-            assertTrue(shapeCollector.showFigures().contains(triangle.toString()));
+            assertEquals(shapeCollector.getFigure(0), triangle);
         }
     }
 
@@ -80,11 +84,10 @@ public class ShapeCollectorTestSuite {
             shapeCollector.addFigure(circle);
 
             //When
-            shapeCollector.removeFigure(circle);
+            boolean result = shapeCollector.removeFigure(circle);
 
             //Then
-            assertNull(circle);
-            assertFalse(shapeCollector.showFigures().contains(circle.toString()));
+            assertTrue(result);
         }
 
         @Test
@@ -95,11 +98,10 @@ public class ShapeCollectorTestSuite {
             shapeCollector.addFigure(square);
 
             //When
-            shapeCollector.removeFigure(square);
+            boolean result = shapeCollector.removeFigure(square);
 
             //Then
-            assertNull(square);
-            assertFalse(shapeCollector.showFigures().contains(square.toString()));
+            assertTrue(result);
         }
 
         @Test
@@ -110,11 +112,10 @@ public class ShapeCollectorTestSuite {
             shapeCollector.addFigure(triangle);
 
             //When
-            assertNull(triangle);
-            shapeCollector.removeFigure(triangle);
+            boolean result = shapeCollector.removeFigure(triangle);
 
             //Then
-            assertFalse(shapeCollector.showFigures().contains(triangle.toString()));
+            assertTrue(result);
         }
     }
 
@@ -128,10 +129,13 @@ public class ShapeCollectorTestSuite {
             Shape triangle = new Triangle(8.2, 18.0);
             Shape circle = new Circle( 15.0);
             ShapeCollector shapeCollector = new ShapeCollector();
+            shapeCollector.addFigure(square);
+            shapeCollector.addFigure(triangle);
+            shapeCollector.addFigure(circle);
 
             //When
             shapeCollector.showFigures();
-            String expectedResult = square + "," + triangle + "," + circle;
+            String expectedResult = square.getShapeName() + ", " + triangle.getShapeName() + ", " + circle.getShapeName();
 
             //Then
             assertEquals(expectedResult, shapeCollector.showFigures());
@@ -148,11 +152,9 @@ public class ShapeCollectorTestSuite {
             Shape triangle = new Triangle(8.4, 18.0);
             Shape circle = new Circle(15.0);
             ShapeCollector shapeCollector = new ShapeCollector ();
-
-            //When
             shapeCollector.addFigure(circle);
+            //When
             Shape result = shapeCollector.getFigure(0);
-
             //Then
             assertEquals(result, circle);
         }
