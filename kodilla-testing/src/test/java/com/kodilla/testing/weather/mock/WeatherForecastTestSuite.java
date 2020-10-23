@@ -61,9 +61,9 @@ public class WeatherForecastTestSuite {
         when(temperaturesMock.getTemperatures()).thenReturn(temperaturesMap);
         WeatherForecast weatherForecast = new WeatherForecast(temperaturesMock);
         //When
-        weatherForecast.calculateMedianCurrentTemperatures(temperaturesMap);
+        double currentMedianTemperature = weatherForecast.calculateMedianCurrentTemperatures(temperaturesMap);
         double testMedianTemperature = 25.5;
         //Ten
-        assertEquals(testMedianTemperature, weatherForecast.calculateMedianCurrentTemperatures(temperaturesMap), 0.01);
+        assertEquals(testMedianTemperature, currentMedianTemperature, 0.01);
     }
 }
