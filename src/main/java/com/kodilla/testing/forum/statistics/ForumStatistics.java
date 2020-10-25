@@ -9,11 +9,11 @@ public class ForumStatistics {
     double averageCommentsPerPost;
 
     public void calculateAdvStatistics(Statistics statistics) {
-       /* this.numberOfUsers = statistics.userNames().size();
-        this.numberOfPosts = statistics.postsCount();
-        this.numberOfComments = statistics.commentsCount();
-        this.averagePostsPerUser = (double) numberOfPosts / numberOfUsers;
-        this.averageCommentsPerUser = (double) numberOfComments / numberOfUsers;
-        this.averageCommentsPerPost = (double) numberOfComments / numberOfPosts;*/
+    /*    numberOfUsers = statistics.userNames().size();
+        numberOfPosts = statistics.postsCount();
+        numberOfComments = statistics.commentsCount();
+        averagePostsPerUser = (double) numberOfPosts / numberOfUsers;
+        averageCommentsPerUser = (double) numberOfComments / numberOfUsers;
+        averageCommentsPerPost = (double) numberOfComments / numberOfPosts;*/
     }
 }
