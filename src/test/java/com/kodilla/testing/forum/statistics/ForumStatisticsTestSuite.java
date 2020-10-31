@@ -33,7 +33,6 @@ public class ForumStatisticsTestSuite {
         System.out.println("Performing test # " + testCounter);
     }
 
-    @org.jetbrains.annotations.NotNull
     private List<String> generateListOfNUsers (int usersQuantity) {
         List<String> usersNames = new ArrayList<>();
         for (int i = 0; i < usersQuantity; i++) {
@@ -42,89 +41,80 @@ public class ForumStatisticsTestSuite {
         return usersNames;
     }
 
-    private int generateNumberOfPosts (int postsQuantity) {
-        return postsQuantity;
-    }
-
-    private int generatorNumberOfComments(int quantityOfComments) {
-        return quantityOfComments;
-    }
-
     @Nested
     @DisplayName("Tests for numbers of forum users, posts and comments")
     class TestsForUsers{
         @Test
-        void testCalculateNumberOfUsers_100() {
+        void shouldReturnNumberOfUsersHundred() {
             //Given
             ForumStatistics forumStatistics = new ForumStatistics();
             List<String> resultListOfUsers_100 = generateListOfNUsers(100);
             when(statisticsMock.userNames()).thenReturn(resultListOfUsers_100);
+
             //When
             forumStatistics.calculateAdvStatistics(statisticsMock);
-            int result = forumStatistics.numberOfUsers;
 
             //Then
+            int result = forumStatistics.numberOfUsers;
             assertEquals(100, result);
 
         }
 
         @Test
-        void testCalculateNumberOfUsers_0() {
+        void shouldReturnNumberOfUsersZero() {
             //Given
             ForumStatistics forumStatistics = new ForumStatistics();
             List<String> resultListOfUsers_0 = new ArrayList<>();
+            when(statisticsMock.userNames()).thenReturn(resultListOfUsers_0);
 
             //When
             forumStatistics.calculateAdvStatistics(statisticsMock);
-            int forumUsers = forumStatistics.numberOfUsers;
 
             //Then
+            int forumUsers = forumStatistics.numberOfUsers;
             assertEquals(0, forumUsers);
         }
 
         @Test
-        void testCalculateNumberOfPosts_0() {
+        void shouldReturnNumberOfPostsZero() {
             //Given
             ForumStatistics forumStatistics = new ForumStatistics();
-            int numberOfPosts = generateNumberOfPosts(0);
-            forumStatistics.calculateAdvStatistics(statisticsMock);
+            when(statisticsMock.postsCount()).thenReturn(0);
 
             //When
-            int forumPosts = forumStatistics.numberOfPosts;
-            int expectedResult = 0;
+            forumStatistics.calculateAdvStatistics(statisticsMock);
 
             //Then
-            assertEquals(expectedResult, forumPosts);
+            int forumPosts = forumStatistics.numberOfPosts;
+            assertEquals(0, forumPosts);
         }
 
         @Test
-        void testCalculateNumberOfPosts_1000() {
+        void shouldReturnNumberOfPostsThousand() {
             //Given
             ForumStatistics forumStatistics = new ForumStatistics();
-            int numberOfPosts = generateNumberOfPosts(1000);
-            when(statisticsMock.postsCount()).thenReturn(numberOfPosts);
-            forumStatistics.calculateAdvStatistics(statisticsMock);
+            when(statisticsMock.postsCount()).thenReturn(1000);
 
             //When
-            int forumPosts = forumStatistics.numberOfPosts;
-            int expectedResult = 1000;
+            forumStatistics.calculateAdvStatistics(statisticsMock);
 
             //Then
-            assertEquals(expectedResult, forumPosts);
+            int forumPosts = forumStatistics.numberOfPosts;
+            assertEquals(1000, forumPosts);
         }
 
         @Test
-        void testCalculateNumberOfComments_0() {
+        void shouldReturnNumberOfCommentsZero() {
             //Given
             ForumStatistics forumStatistics = new ForumStatistics();
-            forumStatistics.calculateAdvStatistics(statisticsMock);
+            when(statisticsMock.commentsCount()).thenReturn(0);
 
             //When
+            forumStatistics.calculateAdvStatistics(statisticsMock);
+
+            //Then
             int forumComments = forumStatistics.numberOfComments;
-            int expectedResult = 0;
-
-            //Then
-            assertEquals(expectedResult, forumComments);
+            assertEquals(0, forumComments);
         }
     }
 
@@ -132,61 +122,67 @@ public class ForumStatisticsTestSuite {
     @DisplayName("Tests calculate average posts per user")
     class TestsCalculateAveragePostsPerUser {
         @Test
-        void testAveragePosts1000_perUsers100() {
+        void shouldReturnAveragePostsPerUser() {
             //Given
             ForumStatistics forumStatistics = new ForumStatistics();
             List<String> resultNumberOfUsers100 = generateListOfNUsers(100);
             when(statisticsMock.userNames()).thenReturn(resultNumberOfUsers100);
             when(statisticsMock.postsCount()).thenReturn(1000);
-            forumStatistics.calculateAdvStatistics(statisticsMock);
+
             //When
-            double result_users100_posts1000 = forumStatistics.averagePostsPerUser;
+            forumStatistics.calculateAdvStatistics(statisticsMock);
+
             //Then
+            double result_users100_posts1000 = forumStatistics.averagePostsPerUser;
             assertEquals(10, result_users100_posts1000, 0.01);
         }
 
         @Test
-        void testAveragePosts0_perUsers100() {
+        void shouldReturnAveragePostsPerHundredUsersWhenZeroPosts() {
             //Given
             ForumStatistics forumStatistics = new ForumStatistics();
-            int numberOfPosts = generateNumberOfPosts(0);
             List<String> resultNumberOfUsers100 = generateListOfNUsers(100);
+            when(statisticsMock.userNames()).thenReturn(resultNumberOfUsers100);
+            when(statisticsMock.postsCount()).thenReturn(0);
 
             //When
             forumStatistics.calculateAdvStatistics(statisticsMock);
-            double result_users100_posts0 = forumStatistics.averagePostsPerUser;
+
             //Then
+            double result_users100_posts0 = forumStatistics.averagePostsPerUser;
             assertEquals(0.0, result_users100_posts0, 0.01);
         }
 
         @Test
-        void testAveragePosts1000_perUsers0() {
+        void shouldReturnAverageZeroPostsPerUserWhenZeroUsersAndThousandPosts () {
             //Given
             ForumStatistics forumStatistics = new ForumStatistics();
-            int numberOfPosts = generateNumberOfPosts(1000);
             List<String> resultNumberOfUsers0 = generateListOfNUsers(0);
+            when(statisticsMock.postsCount()).thenReturn(1000);
+            when(statisticsMock.userNames()).thenReturn(resultNumberOfUsers0);
 
             //When
             forumStatistics.calculateAdvStatistics(statisticsMock);
-            double result_posts0_users100 = forumStatistics.averagePostsPerUser;
 
             //Then
+            double result_posts0_users100 = forumStatistics.averagePostsPerUser;
             assertEquals(0.0, result_posts0_users100, 0.01);
         }
 
         @Test
-        void testAveragePosts0_perUsers0() {
+        void shouldReturnZeroAveragePostsPerUserWhenZeroUsers() {
             //Given
             ForumStatistics forumStatistics = new ForumStatistics();
-            int postsCount = generateNumberOfPosts(0);
             List<String> resultNumberOfUsers0 = generateListOfNUsers(0);
-            forumStatistics.calculateAdvStatistics(statisticsMock);
+            when(statisticsMock.userNames()).thenReturn(resultNumberOfUsers0);
+            when(statisticsMock.postsCount()).thenReturn(0);
 
             //When
-            double result_posts0_users0 = forumStatistics.averagePostsPerUser;
+            forumStatistics.calculateAdvStatistics(statisticsMock);
 
             //Then
-            assertEquals(0.0, result_posts0_users0, 0.01);
+            double resultPosts0_users0 = forumStatistics.averagePostsPerUser;
+            assertEquals(0.0, resultPosts0_users0, 0.01);
         }
     }
 
@@ -194,20 +190,19 @@ public class ForumStatisticsTestSuite {
     @DisplayName("Tests calculate average comments per user")
     class TestCalculateAverageCommentsPerUser {
         @Test
-        void testAverageCommentsPerUsers() {
+        void shouldReturnCorrectAverageNumberOfCommentsPerUser() {
             //Given
             ForumStatistics forumStatistics = new ForumStatistics();
-            List<String> resultNumberOfUsers300 = generateListOfNUsers(300);
-            int numberOfComments = generatorNumberOfComments(120);
-            when(statisticsMock.userNames()).thenReturn(resultNumberOfUsers300);
-            when(statisticsMock.commentsCount()).thenReturn(numberOfComments);
-            forumStatistics.calculateAdvStatistics(statisticsMock);
+            List<String> resultNumberOfUsers4 = generateListOfNUsers(4);
+            when(statisticsMock.userNames()).thenReturn(resultNumberOfUsers4);
+            when(statisticsMock.commentsCount()).thenReturn(10);
 
             //When
-            double resultComments120_users300 = forumStatistics.averageCommentsPerUser;
+            forumStatistics.calculateAdvStatistics(statisticsMock);
 
             //Then
-            assertEquals(0.4, resultComments120_users300, 0.01);
+            double resultComments10_users4 = forumStatistics.averageCommentsPerUser;
+            assertEquals(2.5, resultComments10_users4, 0.01);
         }
     }
 
@@ -215,36 +210,33 @@ public class ForumStatisticsTestSuite {
     @DisplayName("Tests calculate average comments per post.")
     class testAverageCommentsPerPost {
         @Test
-        void testAverageCommentsPerPosts_commentsLessThanPosts() {
+        void shouldReturnCorrectAverageCommentsPerPostsWhenCommentsLessThanPosts() {
             //Given
             ForumStatistics forumStatistics = new ForumStatistics();
-            int numberOFComments = generatorNumberOfComments(66);
-            int numberOfPosts= generateNumberOfPosts(120);
-            when(statisticsMock.commentsCount()).thenReturn(numberOFComments);
-            when(statisticsMock.postsCount()).thenReturn(numberOfPosts);
-            forumStatistics.calculateAdvStatistics(statisticsMock);
+            when(statisticsMock.commentsCount()).thenReturn(2);
+            when(statisticsMock.postsCount()).thenReturn(4);
+
             //When
-            double result = forumStatistics.averageCommentsPerPost;
+            forumStatistics.calculateAdvStatistics(statisticsMock);
 
             //Then
-            assertEquals(0.55, result, 0.01);
+            double result = forumStatistics.averageCommentsPerPost;
+            assertEquals(0.5, result, 0.01);
         }
 
         @Test
-        void testAverageCommentsPerPosts_postsLessThanComments() {
+        void shouldReturnCorrectAverageCommentsPerPostsWhenCommentsMoreThanPosts() {
             //Given
             ForumStatistics forumStatistics = new ForumStatistics();
-            int numberOFComments = generatorNumberOfComments(660);
-            int numberOfPosts= generateNumberOfPosts(120);
-            when(statisticsMock.commentsCount()).thenReturn(numberOFComments);
-            when(statisticsMock.postsCount()).thenReturn(numberOfPosts);
-            forumStatistics.calculateAdvStatistics(statisticsMock);
+            when(statisticsMock.commentsCount()).thenReturn(3);
+            when(statisticsMock.postsCount()).thenReturn(2);
 
             //When
-            double result = forumStatistics.averageCommentsPerPost;
+            forumStatistics.calculateAdvStatistics(statisticsMock);
 
             //Then
-            assertEquals(5.5, result, 0.01);
+            double result = forumStatistics.averageCommentsPerPost;
+            assertEquals(1.5, result, 0.01);
         }
     }
 }
