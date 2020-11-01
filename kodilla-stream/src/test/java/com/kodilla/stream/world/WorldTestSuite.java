@@ -3,13 +3,10 @@ package com.kodilla.stream.world;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WorldTestSuite {
-
     @Test
     void testGetPeopleQuantity() {
         //Given
@@ -25,24 +22,20 @@ public class WorldTestSuite {
         Country country10 = new Country("Nigeria", "203452505");
 
         Continent europe = new Continent("Europe");
-        Set<Country> europeanCountries = new HashSet<>();
         europe.addCountry(country1);
         europe.addCountry(country2);
         europe.addCountry(country3);
 
         Continent asia = new Continent("Asia");
-        Set<Country> asiaCountries = new HashSet<>();
         asia.addCountry(country4);
         asia.addCountry(country5);
         asia.addCountry(country6);
 
         Continent northAmerica = new Continent("North America");
-        Set<Country> northAmericanCountries = new HashSet<>();
         northAmerica.addCountry(country7);
         northAmerica.addCountry(country8);
 
         Continent africa = new Continent("Africa");
-        Set<Country> africanCountries = new HashSet<>();
         africa.addCountry(country9);
         africa.addCountry(country10);
 

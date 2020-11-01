@@ -4,10 +4,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 public final class Continent {
+
     private final String continentName;
     private final Set<Country> countriesOnContinent = new HashSet<>();
 
-    public Continent(String continentName) {
+    public Continent(final String continentName) {
         this.continentName = continentName;
     }
 
