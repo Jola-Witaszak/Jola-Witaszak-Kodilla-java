@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public final class World {
-
     private final Set<Continent> continentsOfTheWorld;
 
     public World() {

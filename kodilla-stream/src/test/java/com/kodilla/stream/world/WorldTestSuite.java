@@ -10,6 +10,7 @@ public class WorldTestSuite {
 
     @Test
     void testGetPeopleQuantity() {
+
         //Given
         Country country1 = new Country("Russia", "142122776");
         Country country2 = new Country("France", "67364357");
