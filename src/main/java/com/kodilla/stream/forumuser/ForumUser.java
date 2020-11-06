@@ -4,15 +4,15 @@ import java.time.LocalDate;
 
 public final class ForumUser {
     private final int userId;
-    private final String userName;
-    private  char sex = 'M'/ 'F';
+    private final String username;
+    private final char gender;
     private final LocalDate birthDate;
     private final int postsCount;
 
-    public ForumUser(final int userId, final String userName, char sex, int yearOfBirth, int monthOfBirth, int dayOfBirth, final int postsCount) {
+    public ForumUser(final int userId, final String username, final char gender, int yearOfBirth, int monthOfBirth, int dayOfBirth, final int postsCount) {
         this.userId = userId;
-        this.userName = userName;
-        this.sex = sex;
+        this.username = username;
+        this.gender = gender;
         this.birthDate = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
         this.postsCount = postsCount;
     }
@@ -22,11 +22,11 @@ public final class ForumUser {
     }
 
     public String getUserName() {
-        return userName;
+        return username;
     }
 
-    public char getSex() {
-        return sex;
+    public char getGender() {
+        return gender;
     }
 
     public LocalDate getBirthDate() {
@@ -41,8 +41,8 @@ public final class ForumUser {
     public String toString() {
         return "ForumUser{" +
                 "userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", sex=" + sex +
+                ", userName='" + username + '\'' +
+                ", sex=" + gender +
                 ", birthDate=" + birthDate +
                 ", postsCount=" + postsCount +
                 '}';
