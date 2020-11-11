@@ -12,8 +12,8 @@ public interface ArrayOperations {
          OptionalDouble streamOfArrayNumbers = IntStream.range(0, numbers.length)
             .map(i -> numbers[i])
             .average();
-         if (streamOfArrayNumbers.isPresent()) {
-             System.out.println("The average of array elements is: " + streamOfArrayNumbers.getAsDouble());
-         }
+
+         double average = streamOfArrayNumbers.orElse(-1);
+         System.out.println("The average of array elements is: " + average);
     }
 }

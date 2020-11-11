@@ -11,7 +11,6 @@ public class ArrayOperationsTestSuite {
     @Test
     void testGetAverage() {
         //Given
-        int sizeOfArray = 20;
         int[] arrayOfNumbers = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
 
         //When
@@ -22,10 +21,8 @@ public class ArrayOperationsTestSuite {
                 .map(i -> arrayOfNumbers[i])
                 .average();
 
-        double result = 0;
-        if (averageOfArrayNumbers.isPresent()) {
-            result = averageOfArrayNumbers.getAsDouble();
-        }
+        double result = averageOfArrayNumbers.orElse(-1);
+
         assertEquals(2.0, result, 0.001);
     }
 }
