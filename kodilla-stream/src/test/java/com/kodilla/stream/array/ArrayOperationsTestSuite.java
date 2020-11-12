@@ -11,17 +11,16 @@ public class ArrayOperationsTestSuite {
     @Test
     void testGetAverage() {
         //Given
-        int[] arrayOfNumbers = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
+        int[] numbers = {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2};
 
         //When
-        ArrayOperations.getAverage(arrayOfNumbers);
+        ArrayOperations.getAverage(numbers);
 
         //Then
-        OptionalDouble averageOfArrayNumbers = IntStream.range(0, arrayOfNumbers.length)
-                .map(i -> arrayOfNumbers[i])
-                .average();
-
-        double result = averageOfArrayNumbers.orElse(-1);
+        double result = IntStream.range(0, numbers.length)
+                .map(i -> numbers[i])
+                .average()
+                .orElse(0);
 
         assertEquals(2.0, result, 0.001);
     }
