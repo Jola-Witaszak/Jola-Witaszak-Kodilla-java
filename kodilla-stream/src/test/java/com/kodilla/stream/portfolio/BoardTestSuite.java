@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -150,16 +151,16 @@ public class BoardTestSuite {
         Board project = prepareTestData();
 
         //When
-        List<TaskList> inProgressTasks = new ArrayList<>();
-        inProgressTasks.add(new TaskList("In progress"));
+        List<TaskList> inProgressTasks = Arrays.asList(new TaskList("In progress"));
 
-        double averageNumberOfDaysOfTaskCompletion = project.getTaskLists().stream()
+        double daysAmount  = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(tl -> tl.getTasks().stream())
                 .mapToLong(task -> Period.between(task.getCreated(), LocalDate.now()).getDays())
-                .average().orElse(-1);
+                .average()
+                .orElse(0);
 
         //Then
-        assertEquals(10.0, averageNumberOfDaysOfTaskCompletion, 0.001);
+        assertEquals(10.0, daysAmount , 0.001);
     }
 }
