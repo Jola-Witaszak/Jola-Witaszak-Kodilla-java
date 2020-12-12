@@ -22,7 +22,7 @@ public class GameService {
         System.out.println();
         System.out.println("Welcome to the game paper, rock, scissors!\nHow many rounds do you want to play? Enter from 1 to 5:");
 
-        rounds = getNumbersOfRound();
+        rounds = getNumberOfRound();
         System.out.println("We're starting the game!\n");
         System.out.println("Select the number:\n paper = 1 \n stone = 2 \n scissors = 3 \n exit = x \n new game = n");
 
@@ -30,7 +30,7 @@ public class GameService {
             System.out.println();
             System.out.println("Round no. " + ++countOfRounds);
 
-            getCorrectNumber();
+            getCorrectMove();
             getUserMove(playerNumber);
 
             if (!gameOver) {
@@ -52,16 +52,16 @@ public class GameService {
         System.out.println("End of the game!");
     }
 
-    public int getNumbersOfRound() {
+    public int getNumberOfRound() {
         int rounds = scanner.nextInt();
-        while (rounds < 1 || rounds > 5) {
-            System.out.println("Incorrect number, enter a number from 1 to 5");
+        while (rounds < 1) {
+            System.out.println("Incorrect number, enter a number greater than zero");
             rounds = scanner.nextInt();
         }
         return rounds;
     }
 
-    public String getCorrectNumber() {
+    public String getCorrectMove() {
         playerNumber = scanner.next();
         while (!(playerNumber.equals("1") || playerNumber.equals("2") || playerNumber.equals("3") ||
                 playerNumber.equals("x") || playerNumber.equals("n"))) {
@@ -145,13 +145,13 @@ public class GameService {
         int playerNumber = convertsToNumber(userNumber);
 
         if ((playerNumber == 1 && cpuNumber == 2) || (playerNumber == 2 && cpuNumber == 3) || (playerNumber == 3 && cpuNumber == 1)) {
-            ++playerWinCounter;
+            playerWinCounter++;
             if (rounds == 0) {
                 return printFinalResult(playerWinCounter, cpuWinCounter);
             }
             return "player " + playerWinCounter + " : cpu " + cpuWinCounter;
         } else if ((cpuNumber == 3 && playerNumber == 1) || (cpuNumber == 1 && playerNumber == 2) || (cpuNumber == 2 && playerNumber == 3)) {
-            ++cpuWinCounter;
+            cpuWinCounter++;
             if (rounds == 0) {
                 return printFinalResult(playerWinCounter, cpuWinCounter);
             }
