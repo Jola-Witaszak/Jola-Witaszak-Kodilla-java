@@ -6,4 +6,3 @@ public class RpsRunner {
         gameService.playGame();
     }
 }
-
