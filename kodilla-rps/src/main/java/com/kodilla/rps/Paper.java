@@ -1,6 +1,6 @@
 package com.kodilla.rps;
 
-public class Paper {
+public class Paper implements Symbol {
     public void drawSymbol() {
         for (int i = 0; i < 1; i++) {
             System.out.println(" ________");
