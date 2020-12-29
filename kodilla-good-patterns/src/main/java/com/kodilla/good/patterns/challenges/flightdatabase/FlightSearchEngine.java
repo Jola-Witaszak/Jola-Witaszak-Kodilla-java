@@ -4,22 +4,27 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class FlightSearchEngine {
+    FlightDatabase flightDatabase;
 
-    public Set<Flight> findFlightTo(String city, FlightDatabase flightDatabase) {
+    public FlightSearchEngine(FlightDatabase flightDatabase) {
+        this.flightDatabase = flightDatabase;
+    }
+
+    public Set<Flight> findFlightTo(String city) {
         return flightDatabase.getFlights().stream()
                 .filter(flight -> flight.getArrival().equals(city))
                 .collect(Collectors.toSet());
     }
 
-    public Set<Flight> findFlightFrom(String city, FlightDatabase flightDatabase) {
+    public Set<Flight> findFlightFrom(String city) {
         return flightDatabase.getFlights().stream()
                 .filter(directFlight -> directFlight.getDeparture().equals(city))
                 .collect(Collectors.toSet());
     }
 
-   public Set<ConnectingFlight> findConnectingFlight(String start, String end, FlightDatabase flightDatabase) {
-        Set<Flight> startOfJourney = findFlightFrom(start, flightDatabase);
-        Set<Flight> endOfJourney = findFlightTo(end, flightDatabase);
+    public Set<ConnectingFlight> findFlightVia(String start, String end) {
+        Set<Flight> startOfJourney = findFlightFrom(start);
+        Set<Flight> endOfJourney = findFlightTo(end);
 
         Set<ConnectingFlight> result = new HashSet<>();
 
@@ -30,12 +35,12 @@ public class FlightSearchEngine {
                 }
             }
         }
-       return result;
+        return result;
     }
 
-    public Set<ConnectingFlight> findFlightVia(String start, String end, String fliesBy, FlightDatabase flightDatabase) {
-        Set<Flight> startOfJourney = findFlightFrom(start, flightDatabase);
-        Set<Flight> endOfJourney = findFlightTo(end, flightDatabase);
+    public Set<ConnectingFlight> findFlightVia(String start, String end, String fliesBy) {
+        Set<Flight> startOfJourney = findFlightFrom(start);
+        Set<Flight> endOfJourney = findFlightTo(end);
 
         Set<ConnectingFlight> result = new HashSet<>();
         for (Flight first : startOfJourney) {
@@ -52,23 +57,23 @@ public class FlightSearchEngine {
         flights.forEach(System.out::println);
     }
 
-    public void displayFlightsTo(String city, FlightDatabase flightDatabase) {
-        Set<Flight> result = findFlightTo(city, flightDatabase);
+    public void displayFlightsTo(String city) {
+        Set<Flight> result = findFlightTo(city);
         printFlights(result);
     }
 
-    public void displayFlightsFrom(String city, FlightDatabase flightDatabase) {
-        Set<Flight> result = findFlightFrom(city, flightDatabase);
+    public void displayFlightsFrom(String city) {
+        Set<Flight> result = findFlightFrom(city);
         printFlights(result);
     }
 
-    public void displayConnectingFlight(String start, String end, FlightDatabase flightDatabase) {
-        Set<ConnectingFlight> result = findConnectingFlight(start, end, flightDatabase);
+    public void displayFlightVia(String start, String end) {
+        Set<ConnectingFlight> result = findFlightVia(start, end);
         result.forEach(System.out::println);
     }
 
-    public void displayFlightVia(String start, String end, String change, FlightDatabase flightDatabase) {
-        Set<ConnectingFlight> result = findFlightVia(start, end, change, flightDatabase);
+    public void displayFlightVia(String start, String end, String change) {
+        Set<ConnectingFlight> result = findFlightVia(start, end, change);
         result.forEach(System.out::println);
     }
 }

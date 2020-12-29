@@ -2,18 +2,17 @@ package com.kodilla.good.patterns.challenges.flightdatabase;
 
 public class Main {
     public static void main(String[] args) {
-
-        FlightSearchEngine flightSearchEngine = new FlightSearchEngine();
         FlightDatabase flightDatabase = new FlightDatabase();
+        FlightSearchEngine flightSearchEngine = new FlightSearchEngine(flightDatabase);
 
         try {
-            flightSearchEngine.displayFlightsFrom("Warszawa", flightDatabase);
+            flightSearchEngine.displayFlightsFrom("Warszawa");
             System.out.println();
-            flightSearchEngine.displayFlightsTo("Lublin", flightDatabase);
+            flightSearchEngine.displayFlightsTo("Lublin");
             System.out.println("-----------------------");
-            flightSearchEngine.displayConnectingFlight("Warszawa", "Lublin", flightDatabase);
+            flightSearchEngine.displayFlightVia("Warszawa", "Lublin");
             System.out.println("-----------------------");
-            flightSearchEngine.displayFlightVia("Warszawa", "Gdansk", "Poznan", flightDatabase);
+            flightSearchEngine.displayFlightVia("Warszawa", "Gdansk", "Poznan");
         } catch (Exception e) {
             System.out.println("No flights found");
             e.printStackTrace();
