@@ -20,7 +20,7 @@ public class GameService {
     public void playGame() {
 
         System.out.println();
-        System.out.println("Welcome to the game paper, rock, scissors!\nHow many rounds do you want to play? Enter from 1 to 5:");
+        System.out.println("Welcome to the game paper, rock, scissors!\nHow many rounds do you want to play? Enter from 1 to the moon & back:");
 
         rounds = getNumberOfRound();
         System.out.println("We're starting the game!\n");
@@ -114,16 +114,16 @@ public class GameService {
     }
 
     public  void draw(int number) {
-
-        Paper paper = new Paper();
-        Stone stone = new Stone();
-        Scissors scissors = new Scissors();
+        Symbol symbol;
         if (number == 1) {
-            paper.drawSymbol();
+            symbol = new Paper();
+            symbol.drawSymbol();
         } else if (number == 2) {
-            stone.drawSymbol();
+            symbol = new Stone();
+            symbol.drawSymbol();
         } else if (number == 3) {
-            scissors.drawSymbol();
+            symbol = new Scissors();
+            symbol.drawSymbol();
         }
     }
 
