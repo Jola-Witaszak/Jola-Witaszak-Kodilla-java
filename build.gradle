@@ -15,8 +15,8 @@ repositories {
 dependencies {
 }
 
-bootJar {
-    mainClassName = 'com.kodilla.KodillaSpringApplication'
+springBoot {
+    mainClassName = 'com.kodilla.KodillaSpringWebApplication'
 }
 
 test {
