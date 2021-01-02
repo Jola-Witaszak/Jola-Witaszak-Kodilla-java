@@ -8,27 +8,32 @@ public class Calculator {
     @Autowired
     private Display display;
 
-    public double addAToB(double a, double b) {
+    public double add(double a, double b) {
         double result = a + b;
         display.displayValue(result);
         return result;
     }
 
-    public double subtractBFromA(double a, double b) {
+    public double sub(double a, double b) {
         double result = a - b;
         display.displayValue(result);
         return result;
     }
 
-    public double multiplyAByB(double a, double b) {
+    public double mul(double a, double b) {
         double result = a * b;
         display.displayValue(result);
         return result;
     }
 
-    public double dividesAByB(double a, double b) {
-        double result = a / b;
-        display.displayValue(result);
-        return result;
+    public double div(double a, double b) throws ArithmeticException {
+        if (b == 0) {
+            System.out.println("Cannot be divided by ZERO !!!");
+            throw new ArithmeticException();
+        } else {
+            double result = a / b;
+            display.displayValue(result);
+            return result;
+        }
     }
 }
