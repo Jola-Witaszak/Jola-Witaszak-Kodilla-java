@@ -1,0 +1,86 @@
+
+
+create table ISSUESLISTS
+(
+ID serial primary key,
+NAME varchar(100) charset utf8 not null
+);
+
+
+
+create table ISSUES
+(
+ID serial primary key,
+ISSUESLISTS_ID bigint unsigned not null,
+USER_ID_ASSIGNEDTO bigint unsigned not null,
+SUMMARY varchar (800) charset utf8mb4 not null,
+DESCRIPTION varchar (800) charset utf8mb4 not null,
+foreign key (ISSUESLISTS_ID) REFERENCES ISSUESLISTS (ID),
+foreign key (USER_ID_ASSIGNEDTO) REFERENCES USERS (ID)
+);
+
+
+
+insert into ISSUESLISTS (NAME)
+value ("ToDo");
+
+insert into ISSUESLISTS (NAME)
+value ("In progress");
+
+insert into ISSUESLISTS (NAME)
+value ("Done");
+
+commit;
+
+insert into issues (issueslists_id, USER_ID_ASSIGNEDTO, description, SUMMARY)
+values (1, 2, "dream", "0");
+
+insert into issues (issueslists_id, USER_ID_ASSIGNEDTO, description, SUMMARY)
+values (1, 1, "love", "0");
+
+insert into issues (issueslists_id, USER_ID_ASSIGNEDTO, description, SUMMARY)
+values (1, 3, "feel free", "0");
+
+insert into issues ( issueslists_id, USER_ID_ASSIGNEDTO, description, SUMMARY)
+values (1, 4, "relax", "0");
+
+insert into issues (issueslists_id, USER_ID_ASSIGNEDTO, description, SUMMARY)
+values (1, 1, "be happy", "0");
+
+commit;
+
+insert into issues (issueslists_id, USER_ID_ASSIGNEDTO, description, SUMMARY)
+values (2, 1, "dream - in progress", "Im więcej ludzi spotykam, tym bardziej lubię swojego psa");
+
+insert into issues (issueslists_id, USER_ID_ASSIGNEDTO, description, SUMMARY)
+values (2, 4, "love - in progress", "jeśli każdy o sobie pomyśli, to będzie o wszystkich pomyślane");
+
+insert into issues (issueslists_id, USER_ID_ASSIGNEDTO, description, SUMMARY)
+values (2, 3, "feel free - in progress", "life is brutal and full of zasadzkas");
+
+insert into issues ( issueslists_id, USER_ID_ASSIGNEDTO, description, SUMMARY)
+values (2, 2, "relax - in progress", "ciężka praca kiedyś zaprocentuje, lenistwo daje efekt natychmiastowy");
+
+insert into issues (issueslists_id, USER_ID_ASSIGNEDTO, description, SUMMARY)
+values (2, 1, "be happy - in progress", "rosnące koszty życia nie zmniejszyły jego popularnosci");
+
+commit;
+
+insert into issues (issueslists_id, USER_ID_ASSIGNEDTO, description, SUMMARY)
+values (3, 1, "dream - done", "0");
+
+insert into issues (issueslists_id, USER_ID_ASSIGNEDTO, description, SUMMARY)
+values (3, 2, "love - done", "0");
+
+insert into issues (issueslists_id, USER_ID_ASSIGNEDTO, description, SUMMARY)
+values (3, 3, "feel free - done", "0");
+
+insert into issues ( issueslists_id, USER_ID_ASSIGNEDTO, description, SUMMARY)
+values (3, 4, "relax - done", "0");
+
+insert into issues (issueslists_id, USER_ID_ASSIGNEDTO, description, SUMMARY)
+values (3, 1, "be happy - done", "0");
+
+commit;
+
+
