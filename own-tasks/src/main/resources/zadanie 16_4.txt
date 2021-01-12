@@ -1,0 +1,16 @@
+1)
+SELECT ISL.NAME, ISS.DESCRIPTION, ISS.SUMMARY 
+FROM ISSUES ISS JOIN ISSUESLISTS ISL
+ON ISS.ISSUESLISTS_ID = ISL. ID;
+
+2)
+select i.description, u.firstname, u.lastname
+from issues i join users u 
+on i.user_id_assignedto = u.id;
+
+3)
+select u.firstname, u.lastname, count(*) as issues_number
+from issues i join users u 
+on i.user_id_assignedto = u.id
+group by user_id_assignedto
+having count(*) > 0;
