@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "taskLists")
+@Table(name = "TASKLISTS")
 public class TaskList {
     private int id;
     private String listName;
@@ -20,32 +20,30 @@ public class TaskList {
 
     @Id
     @GeneratedValue
-    @NotNull
-    @Column(name = "id", unique = true)
     public int getId() {
         return id;
     }
 
     @NotNull
-    @Column(name = "listName")
+    @Column(name = "LISTNAME")
     public String getListName() {
         return listName;
     }
 
-    @Column(name = "description")
+    @Column(name = "DESCRIPTION")
     public String getDescription() {
         return description;
     }
 
-    public void setId(int id) {
+    private void setId(int id) {
         this.id = id;
     }
 
-    public void setListName(String listName) {
+    private void setListName(String listName) {
         this.listName = listName;
     }
 
-    public void setDescription(String description) {
+    private void setDescription(String description) {
         this.description = description;
     }
 }
