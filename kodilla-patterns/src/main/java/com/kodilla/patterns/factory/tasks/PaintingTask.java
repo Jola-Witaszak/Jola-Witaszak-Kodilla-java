@@ -1,18 +1,17 @@
 package com.kodilla.patterns.factory.tasks;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public final class PaintingTask implements Task {
     private final String taskName;
     private final String color;
     private final String whatToPaint;
-    private final Map<String, String> paintedItems = new HashMap<>();
+    private boolean executed;
+
 
     public PaintingTask(final String taskName, final String color, final String whatToPaint) {
         this.taskName = taskName;
         this.color = color;
         this.whatToPaint = whatToPaint;
+        this.executed = false;
     }
 
     @Override
@@ -21,17 +20,22 @@ public final class PaintingTask implements Task {
     }
 
     @Override
-    public int executeTask() {
-        paintedItems.put(whatToPaint, color);
-        return paintedItems.size();
+    public void executeTask() {
+        System.out.println("Executing task: " + this);
+        executed = true;
     }
 
     @Override
     public boolean isTaskExecuted() {
-        boolean isExecuted = false;
-        if (executeTask() > 0) {
-            isExecuted = true;
-        }
-        return isExecuted;
+        return executed;
+    }
+
+    @Override
+    public String toString() {
+        return "PaintingTask{" +
+                "taskName='" + taskName + '\'' +
+                ", color='" + color + '\'' +
+                ", whatToPaint='" + whatToPaint + '\'' +
+                '}';
     }
 }

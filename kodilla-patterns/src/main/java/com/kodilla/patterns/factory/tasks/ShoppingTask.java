@@ -1,5 +1,6 @@
 package com.kodilla.patterns.factory.tasks;
 
+import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,7 +8,8 @@ public final class ShoppingTask implements Task {
     private final String taskName;
     private final String whatToBuy;
     private final double quantity;
-    private final Map<String, Double> shoppingList = new HashMap<>();
+    private boolean executed;
+
 
     public ShoppingTask(final String taskName, final String whatToBuy, final double quantity) {
         this.taskName = taskName;
@@ -21,13 +23,13 @@ public final class ShoppingTask implements Task {
     }
 
     @Override
-    public int executeTask() {
-        shoppingList.put(whatToBuy, quantity);
-        return shoppingList.size();
+    public void executeTask() {
+        System.out.println("Executing task: " + this);
+        executed = true;
     }
 
     @Override
     public boolean isTaskExecuted() {
-        return executeTask() > 0;
+        return executed;
     }
 }

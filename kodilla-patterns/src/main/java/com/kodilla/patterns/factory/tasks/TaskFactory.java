@@ -1,20 +1,17 @@
 package com.kodilla.patterns.factory.tasks;
 
 public final class TaskFactory {
-    public static final String SHOPPING = "SHOPPING";
-    public static final String PAINTING = "PAINTING";
-    public static final String DRIVING = "DRIVING";
 
-    public final Task createTask(final String taskClass) throws IllegalArgumentException {
-        switch (taskClass) {
+    public final Task createTask(TaskType taskType, String taskName, String param1, Object param2) throws IllegalArgumentException {
+        switch (taskType) {
             case SHOPPING:
-                return new ShoppingTask("Painting articles", "chalk paints", 10);
+                return new ShoppingTask(taskName, param1, (Double) param2);
             case PAINTING:
-                return new PaintingTask("Christmas decorations", "red", "baubles");
+                return new PaintingTask(taskName, param1, (String) param2);
             case DRIVING:
-                return new DrivingTask("Shopping trip", "gallery", "Bentley Continental");
+                return new DrivingTask(taskName, param1, (String) param2);
             default:
-                throw new IllegalArgumentException("The task type " + taskClass + " is not recognized.");
+                throw new IllegalArgumentException("The task type " + taskType + " is not recognized.");
         }
     }
 }
