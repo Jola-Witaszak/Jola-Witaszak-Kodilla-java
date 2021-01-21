@@ -14,7 +14,7 @@ public class LibraryTestSuite {
         Library library = new Library("City Library");
         IntStream.iterate(0, n -> n + 1)
                 .limit(12)
-                .forEach(n -> library.getBooks().add(new Book("Some book number" + n, "author" + n, 2000 + n, 1 + n, 3 + n)));
+                .forEach(n -> library.getBooks().add(new Book(" book" + n, "author" + n, 2000 + n)));
 
         //making a shallow clone of the object Library
         Library shallowClonedLibrary = null;
@@ -35,7 +35,7 @@ public class LibraryTestSuite {
         }
 
         //When
-        library.getBooks().add(new Book("X", "Y", 2020, 2, 28));
+        library.getBooks().add(new Book("Excel 2016. Formulas", "Michael Alexander", 2017));
 
         //Then
         assertEquals(13, library.getBooks().size());

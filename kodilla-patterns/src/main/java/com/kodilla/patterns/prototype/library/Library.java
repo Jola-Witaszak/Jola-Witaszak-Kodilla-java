@@ -1,6 +1,8 @@
 package com.kodilla.patterns.prototype.library;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public final class Library extends Prototype<Library>{
@@ -35,7 +37,7 @@ public final class Library extends Prototype<Library>{
         Library clonedLibrary = super.clone();
         clonedLibrary.books = new HashSet<>();
         for (Book book : books) {
-            clonedLibrary.getBooks().add(book);
+            clonedLibrary.getBooks().add(book.getCopy());
         }
         return clonedLibrary;
     }

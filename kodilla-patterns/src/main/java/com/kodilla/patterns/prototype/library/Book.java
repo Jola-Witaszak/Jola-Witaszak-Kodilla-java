@@ -1,17 +1,17 @@
 package com.kodilla.patterns.prototype.library;
 
-import java.time.LocalDate;
+import java.util.Calendar;
 
-public final class Book {
+public final class Book extends Prototype<Book> {
 
-    final String title;
-    final String author;
-    final LocalDate publicationDate;
+    private final String title;
+    private final String author;
+    private final int publicationDate;
 
-    public Book(final String title, final String author,  int year,  int month, int dayOfMonth) {
+    public Book(String title, String author, int publicationDate) {
         this.title = title;
         this.author = author;
-        this.publicationDate = LocalDate.of(year, month, dayOfMonth);
+        this.publicationDate = publicationDate;
     }
 
     public String getTitle() {
@@ -22,8 +22,12 @@ public final class Book {
         return author;
     }
 
-    public LocalDate getPublicationDate() {
+    public int getPublicationDate() {
         return publicationDate;
+    }
+
+    public Book getCopy() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     @Override
@@ -42,16 +46,16 @@ public final class Book {
 
         Book book = (Book) o;
 
-        if (getTitle() != null ? !getTitle().equals(book.getTitle()) : book.getTitle() != null) return false;
-        if (getAuthor() != null ? !getAuthor().equals(book.getAuthor()) : book.getAuthor() != null) return false;
-        return getPublicationDate() != null ? getPublicationDate().equals(book.getPublicationDate()) : book.getPublicationDate() == null;
+        if (getPublicationDate() != book.getPublicationDate()) return false;
+        if (!getTitle().equals(book.getTitle())) return false;
+        return getAuthor().equals(book.getAuthor());
     }
 
     @Override
     public int hashCode() {
-        int result = getTitle() != null ? getTitle().hashCode() : 0;
-        result = 31 * result + (getAuthor() != null ? getAuthor().hashCode() : 0);
-        result = 31 * result + (getPublicationDate() != null ? getPublicationDate().hashCode() : 0);
+        int result = getTitle().hashCode();
+        result = 31 * result + getAuthor().hashCode();
+        result = 31 * result + getPublicationDate();
         return result;
     }
 }
