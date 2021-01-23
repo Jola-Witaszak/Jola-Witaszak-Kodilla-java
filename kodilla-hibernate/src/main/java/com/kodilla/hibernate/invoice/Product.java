@@ -21,7 +21,8 @@ public class Product {
 
     @Id
     @GeneratedValue
-    @Column(name = "PRODUCT_ID", unique = true)
+    @NotNull
+    @Column(name = "ID", unique = true)
     public int getId() {
         return id;
     }
@@ -50,7 +51,7 @@ public class Product {
         Name = name;
     }
 
-    public void setItems(List<Item> items) {
+    private void setItems(List<Item> items) {
         this.items = items;
     }
 }

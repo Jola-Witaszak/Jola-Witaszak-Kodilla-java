@@ -12,17 +12,17 @@ public class Invoice {
     private String number;
     private List<Item> items = new ArrayList<>();
 
-    public Invoice() {
-    }
-
     public Invoice(String number) {
         this.number = number;
+    }
+
+    public Invoice() {
     }
 
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "INVOICE_ID", unique = true)
+    @Column(name = "ID", unique = true)
     public int getId() {
         return id;
     }
@@ -51,7 +51,7 @@ public class Invoice {
         this.number = number;
     }
 
-    public void setItems(List<Item> items) {
+    private void setItems(List<Item> items) {
         this.items = items;
     }
 }
