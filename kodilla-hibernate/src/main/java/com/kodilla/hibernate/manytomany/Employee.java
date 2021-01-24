@@ -5,6 +5,10 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedQuery(
+        name = "Employee.searchEmployeeWithGivenName",
+        query = "from Employee where lastName = :LASTNAME"
+)
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
@@ -23,24 +27,22 @@ public class Employee {
 
     @Id
     @GeneratedValue
-    @Column(name = "EMPLOYEE_ID", unique = true)
+    @Column(name = "EMPLOYEE_ID")
     public int getId() {
         return id;
     }
 
     @NotNull
-    @Column(name = "FIRSTNAME")
     public String getFirstName() {
         return firstName;
     }
 
     @NotNull
-    @Column(name = "LASTNAME")
     public String getLastName() {
         return lastName;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "JOIN_COMPANY_EMPLOYEE",
             joinColumns = {@JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "EMPLOYEE_ID")},
