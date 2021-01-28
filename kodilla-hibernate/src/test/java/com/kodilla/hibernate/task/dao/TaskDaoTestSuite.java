@@ -9,8 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 public class TaskDaoTestSuite {
@@ -23,8 +23,7 @@ public class TaskDaoTestSuite {
     private static final String DESCRIPTION = "Test: Learn Hibernate";
 
     @Test
-    void
-    testTaskDaoSave() {
+    void testTaskDaoSave() {
         //Given
         Task task = new Task(DESCRIPTION, 7);
         //When
@@ -40,15 +39,15 @@ public class TaskDaoTestSuite {
     @Test
     void testTaskDaoFindByDuration() {
         //Given
-        Task task = new Task(DESCRIPTION, 8);
+        Task task = new Task(DESCRIPTION, 9);
         taskDao.save(task);
         int duration = task.getDuration();
+        int id = task.getId();
         //When
-        List<Task> readTask = taskDao.findByDuration(duration);
+        List<Task> readTasks = taskDao.findByDuration(duration);
         //Then
-        assertEquals(1, readTask.size());
+        assertEquals(1, readTasks.size());
         //CleanUp
-        int id = readTask.get(0).getId();
         taskDao.deleteById(id);
     }
 
