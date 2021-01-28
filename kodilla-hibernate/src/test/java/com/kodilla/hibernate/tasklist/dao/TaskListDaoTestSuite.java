@@ -8,25 +8,27 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @SpringBootTest
 public class TaskListDaoTestSuite {
     @Autowired
     TaskListDao taskListDao;
 
+    private static final String DESCRIPTION = "car repair";
+    private static final String NAME = "ToDo List";
+
     @Test
     void testFindByListName() {
         //Given
-        String listName = "for repair";
-        String description = "list of cars for repair";
-        TaskList taskList = new TaskList(listName, description);
+        TaskList taskList = new TaskList(NAME, DESCRIPTION);
         taskListDao.save(taskList);
-        //When
-        List<TaskList> downLoadedList = taskListDao.findByListName(listName);
-        //Then
-        assertEquals(1, downLoadedList.size());
-        //CleanUp
         int id = taskList.getId();
+        //When
+        List<TaskList> result =  taskListDao.findByListName(NAME);
+        //Then
+        assertEquals(1, result.size());
+        //CleanUp
         taskListDao.deleteById(id);
     }
 }
