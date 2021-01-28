@@ -16,6 +16,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TaskDaoTestSuite {
     @Autowired // bez adnotacji jest nullPointerException, pole jest zadeklarowane, a nie utworzony nigdzie obiekt. Z autowired spring tworzy beana
     private TaskDao taskDao;
+
+    @Autowired
+    private Task_ListDao task_listDao;
+
     private static final String DESCRIPTION = "Test: Learn Hibernate";
 
     @Test

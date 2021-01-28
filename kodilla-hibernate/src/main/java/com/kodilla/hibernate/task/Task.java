@@ -12,6 +12,7 @@ public class Task {
     private Date created;
     private int duration;
     private TaskFinancialDetails taskFinancialDetails;
+    private Task_List task_list;
 
     public Task() {
     }
@@ -46,6 +47,12 @@ public class Task {
         return duration;
     }
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "TASKLIST_ID")
+    public Task_List getTask_list() {
+        return task_list;
+    }
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "TASKS_FINANCIALS_ID")
     public TaskFinancialDetails getTaskFinancialDetails() {
@@ -70,5 +77,9 @@ public class Task {
 
     public void setTaskFinancialDetails(TaskFinancialDetails taskFinancialDetails) {
         this.taskFinancialDetails = taskFinancialDetails;
+    }
+
+    public void setTask_list(Task_List task_list) {
+        this.task_list = task_list;
     }
 }
