@@ -3,6 +3,7 @@ package com.kodilla.hibernate.tasklist;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+
 @Entity
 @Table(name = "TASKLISTS")
 public class TaskList {
