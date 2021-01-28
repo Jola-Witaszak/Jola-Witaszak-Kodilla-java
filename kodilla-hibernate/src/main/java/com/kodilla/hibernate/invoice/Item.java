@@ -27,8 +27,6 @@ public class Item {
 
     @Id
     @GeneratedValue
-    @NotNull
-    @Column(name = "ID", unique = true)
     public int getId() {
         return id;
     }
@@ -46,19 +44,16 @@ public class Item {
     }
 
     @NotNull
-    @Column(name = "PRICE")
     public BigDecimal getPrice() {
         return price;
     }
 
     @NotNull
-    @Column(name = "QUANTITY")
     public int getQuantity() {
         return quantity;
     }
 
     @NotNull
-    @Column(name = "VALUE")
     public BigDecimal getValue() {
         return value;
     }
