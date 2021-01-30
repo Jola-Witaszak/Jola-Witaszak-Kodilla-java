@@ -1,0 +1,31 @@
+{
+  "brand": "Bentley",
+  "model": "Continental",
+  "engineCapacity": 3.5,
+  "seats": [
+    {
+      "material": "alcantara",
+      "color": "black",
+      
+    },
+    {
+      "material": "alcantara",
+      "color": "black",
+      
+    },
+    {
+      "material": "alcantara",
+      "color": "anthracite",
+      
+    },
+    {
+      "material": "alcantara",
+      "color": "anthracite"
+    }
+  ]
+}
+
+
+
+
+
