@@ -5,6 +5,11 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedNativeQuery(
+        name = "Company.selectCompaniesWhoseNameBeginsWith",
+        query = "SELECT * FROM COMPANIES WHERE (LEFT(COMPANY_NAME, 3) = :NAME)",
+        resultClass = Company.class
+)
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
@@ -21,7 +26,7 @@ public class Company {
 
     @Id
     @GeneratedValue
-    @Column(name = "COMPANY_ID", unique = true)
+    @Column(name = "COMPANY_ID")
     public int getId() {
         return id;
     }
