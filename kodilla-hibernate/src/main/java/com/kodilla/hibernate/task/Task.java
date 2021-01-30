@@ -66,6 +66,12 @@ public final class Task {
         return duration;
     }
 
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "TASKLIST_ID")
+    public TaskList getTaskList() {
+        return taskList;
+    }
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "TASKS_FINANCIALS_ID")
     public TaskFinancialDetails getTaskFinancialDetails() {
@@ -77,8 +83,8 @@ public final class Task {
     public TaskList getTaskList() {
         return taskList;
     }
-
-    public void setId(int id) {
+  
+    private void setId(int id) {
         this.id = id;
     }
 
