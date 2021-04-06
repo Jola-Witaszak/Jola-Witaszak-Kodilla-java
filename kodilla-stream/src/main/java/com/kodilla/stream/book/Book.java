@@ -4,8 +4,10 @@ public final class Book {
     private final String author;
     private final String title;
     private final int yearOfPublication;
+    private final String signature;
 
-    public Book(final String author, final String title, final int yearOfPublication) {
+    public Book(final String signature, final String author, final String title, final int yearOfPublication) {
+        this.signature = signature;
         this.author = author;
         this.title = title;
         this.yearOfPublication = yearOfPublication;
@@ -21,6 +23,10 @@ public final class Book {
 
     public int getYearOfPublication() {
         return yearOfPublication;
+    }
+
+    public String getSignature() {
+        return signature;
     }
 
     @Override

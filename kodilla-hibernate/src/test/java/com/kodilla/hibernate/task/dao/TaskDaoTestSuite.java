@@ -2,8 +2,8 @@ package com.kodilla.hibernate.task.dao;
 
 import com.kodilla.hibernate.task.Task;
 import com.kodilla.hibernate.task.TaskFinancialDetails;
-import com.kodilla.hibernate.taskList.TaskList;
 
+import com.kodilla.hibernate.task.TaskList;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,8 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class TaskDaoTestSuite {
@@ -98,6 +98,7 @@ public class TaskDaoTestSuite {
         } finally {
             taskListDao.deleteById(id);
         }
+    }
 
     @Test
     void testTaskDaoSaveWithFinancialDetails() {

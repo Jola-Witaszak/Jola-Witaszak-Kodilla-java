@@ -1,5 +1,7 @@
 package com.kodilla.hibernate.task;
 
+import com.kodilla.hibernate.tasklist.TaskList2;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -7,7 +9,7 @@ import java.util.Date;
 @NamedQueries({
         @NamedQuery(
         name = "Task.retrieveLongTasks",
-        query = "FROM Task WHERE duration > 10"
+        query = "from Task WHERE duration > 10"
         ),
         @NamedQuery(
                 name = "Task.retrieveShortTasks",
@@ -64,12 +66,6 @@ public final class Task {
     @Column(name = "DURATION")
     public int getDuration() {
         return duration;
-    }
-
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "TASKLIST_ID")
-    public TaskList getTaskList() {
-        return taskList;
     }
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
