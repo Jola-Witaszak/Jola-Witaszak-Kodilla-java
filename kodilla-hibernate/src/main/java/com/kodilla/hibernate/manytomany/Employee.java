@@ -4,11 +4,16 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-
-@NamedQuery(
-        name = "Employee.searchEmployeeWithGivenName",
-        query = "from Employee where lastName = :LASTNAME"
-)
+@NamedQueries({
+        @NamedQuery(
+                name = "Employee.searchEmployeeWithGivenName",
+                query = "from Employee where lastName = :LASTNAME"
+        ),
+        @NamedQuery(
+                name = "Employee.findEmployeeByPartOfName",
+                query = "from Employee where lastName like : arg"
+        )
+})
 @Entity
 @Table(name = "EMPLOYEES")
 public class Employee {
