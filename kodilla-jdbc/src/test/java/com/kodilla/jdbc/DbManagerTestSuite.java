@@ -50,9 +50,8 @@ public class DbManagerTestSuite {
         //Given
         DbManager dbManager = DbManager.getInstance();
         //When
-        String sqlQuery = "select u.FIRSTNAME, u.LASTNAME" +
-                "from posts p join users u \n" +
-                "on p.user_id = u.id\n" +
+        String sqlQuery = "select u.FIRSTNAME, u.LASTNAME\n" +
+                "from posts p join users u on p.user_id = u.id\n" +
                 "group by p.user_id\n" +
                 "having count(*) >= 2;";
         Statement statement = dbManager.getConnection().createStatement();
