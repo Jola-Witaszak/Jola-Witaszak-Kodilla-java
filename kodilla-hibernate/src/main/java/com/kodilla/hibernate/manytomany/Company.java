@@ -5,11 +5,20 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@NamedNativeQuery(
-        name = "Company.selectCompaniesWhoseNameBeginsWith",
-        query = "SELECT * FROM COMPANIES WHERE (LEFT(COMPANY_NAME, 3) = :NAME)",
-        resultClass = Company.class
-)
+@NamedNativeQueries({
+        @NamedNativeQuery(
+                name = "Company.selectCompaniesWhoseNameBeginsWith",
+                query = "select * from companies where (left(company_name, 3) = :name)",
+                resultClass = Company.class
+        ),
+        @NamedNativeQuery(
+                name = "Company.findCompanyByPartOfName",
+                query = "select * from companies where company_name like :arg",
+                resultClass = Company.class
+        )
+})
+
+
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
