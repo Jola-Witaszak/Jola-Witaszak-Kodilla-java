@@ -1,9 +1,7 @@
 package com.kodilla.patterns2.aop.calculator;
 
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -34,5 +32,9 @@ public class Watcher {
             throw throwable;
         }
         return result;
+    }
+    @After("execution(* com.kodilla.patterns2.facade.api.OrderFacade.processOrder(..))")
+    public void logEachMethodCall() {
+        LOGGER.info("Method processOrder() in class OrderFacade has been started..." );
     }
 }
