@@ -18,7 +18,6 @@ import java.util.List;
         )
 })
 
-
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
