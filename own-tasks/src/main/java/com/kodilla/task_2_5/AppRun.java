@@ -1,7 +1,5 @@
 package com.kodilla.task_2_5;
 
-import java.sql.SQLOutput;
-
 public class AppRun {
     public static void main(String[] args) {
         ComputerScienceLesson lesson = new ComputerScienceLesson();

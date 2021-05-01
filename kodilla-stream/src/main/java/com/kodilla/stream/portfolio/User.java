@@ -1,7 +1,5 @@
 package com.kodilla.stream.portfolio;
 
-import java.util.stream.Stream;
-
 public final class User {
     private final String username;
     private final String realName;

@@ -1,6 +1,5 @@
 package com.kodilla.patterns.prototype;
 
-import javax.swing.*;
 import java.util.HashSet;
 import java.util.Set;
 

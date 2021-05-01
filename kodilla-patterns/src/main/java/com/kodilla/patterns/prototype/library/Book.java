@@ -1,7 +1,5 @@
 package com.kodilla.patterns.prototype.library;
 
-import java.util.Calendar;
-
 public final class Book extends Prototype<Book> {
 
     private final String title;

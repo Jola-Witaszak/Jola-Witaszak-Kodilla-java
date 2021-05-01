@@ -1,9 +1,5 @@
 package com.kodilla.patterns.factory.tasks;
 
-import java.sql.SQLOutput;
-import java.util.HashMap;
-import java.util.Map;
-
 public final class ShoppingTask implements Task {
     private final String taskName;
     private final String whatToBuy;

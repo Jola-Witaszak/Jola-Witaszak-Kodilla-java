@@ -29,7 +29,6 @@ public class ForumTopic implements Observable{
         for (Observer observer : observers) {
             observer.update(this);
         }
-        observers.forEach(observer -> observer.update(this));
     }
 
     @Override
