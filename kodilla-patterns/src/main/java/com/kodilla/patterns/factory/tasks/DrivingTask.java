@@ -1,8 +1,5 @@
 package com.kodilla.patterns.factory.tasks;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public final class DrivingTask implements Task{
     private final String taskName;
     private final String where;

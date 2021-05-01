@@ -1,8 +1,6 @@
 package com.kodilla.patterns.prototype.library;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public final class Library extends Prototype<Library>{

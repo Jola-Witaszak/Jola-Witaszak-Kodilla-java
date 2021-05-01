@@ -1,6 +1,9 @@
 package com.kodilla.patterns2.observer.homework;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 
 public class JobQueue implements Sender {
     private final String course;
