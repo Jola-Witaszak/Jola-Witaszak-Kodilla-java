@@ -69,7 +69,8 @@ public class CrudAppTestSuite {
                     WebElement buttonCreateCard = theForm.findElement(By.xpath(".//button[contains(@class, \"card-creation\")]"));
                     buttonCreateCard.click();
                 });
-        Thread.sleep(4000);
+
+        Thread.sleep(5000);
         Alert alert = driver.switchTo().alert();
         if (alert.getText().contains("Card created ")) {
             alert.accept();
@@ -116,17 +117,18 @@ public class CrudAppTestSuite {
     }
 
     private boolean canTaskDeleteFromDatabase(String taskName) throws InterruptedException {
+
         boolean result;
+
         while (!driver.findElement(By.xpath("//select[1]")).isDisplayed());
-        driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
-                .filter(form -> form.findElement(By.xpath("//p[@class=\"datatable__field-value\"]")).getText().equals(taskName))
-                .peek(b -> System.out.println(b.findElement(By.xpath(".//div/fieldset/button[4]")).getText()))
-                .forEach(form -> {
-                        WebElement button = form.findElement(By.xpath(".//div/fieldset/button[4]"));
-                        button.click();
-                });
+        driver.findElements(By.xpath("//form[@class='datatable__row']")).stream()
+                .filter(row ->
+                        row.findElement(By.xpath(".//p[@class='datatable__field-value']"))
+                                .getText().equals(taskName))
+                .forEach(taskNameRow -> taskNameRow.findElement(By.xpath(".//button[text()='Delete']")).click());
+        Thread.sleep(4000);
+
         result = driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
-                .peek(n -> System.out.println(n.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]")).getText()))
                 .anyMatch(anyForm -> anyForm.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]"))
                         .getText().equals(taskName));
         Thread.sleep(4000);
@@ -136,8 +138,8 @@ public class CrudAppTestSuite {
     @Test
     void shouldCreateTrelloCard() throws InterruptedException {
         String taskName = createCrudAppTestTask();
-        //sendTestTaskToTrello(taskName);
-        //assertTrue(checkTaskExistsInTrello(taskName));
+        sendTestTaskToTrello(taskName);
+        assertTrue(checkTaskExistsInTrello(taskName));
         assertFalse(canTaskDeleteFromDatabase(taskName));
     }
 }
