@@ -9,11 +9,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CrudAppTestSuite {
@@ -116,9 +114,7 @@ public class CrudAppTestSuite {
         return result;
     }
 
-    private boolean canTaskDeleteFromDatabase(String taskName) throws InterruptedException {
-
-        boolean result;
+    private void deleteTestTask(String taskName) throws InterruptedException {
 
         while (!driver.findElement(By.xpath("//select[1]")).isDisplayed());
         driver.findElements(By.xpath("//form[@class='datatable__row']")).stream()
@@ -127,12 +123,6 @@ public class CrudAppTestSuite {
                                 .getText().equals(taskName))
                 .forEach(taskNameRow -> taskNameRow.findElement(By.xpath(".//button[text()='Delete']")).click());
         Thread.sleep(4000);
-
-        result = driver.findElements(By.xpath("//form[@class=\"datatable__row\"]")).stream()
-                .anyMatch(anyForm -> anyForm.findElement(By.xpath(".//p[@class=\"datatable__field-value\"]"))
-                        .getText().equals(taskName));
-        Thread.sleep(4000);
-        return  result;
     }
 
     @Test
@@ -140,6 +130,7 @@ public class CrudAppTestSuite {
         String taskName = createCrudAppTestTask();
         sendTestTaskToTrello(taskName);
         assertTrue(checkTaskExistsInTrello(taskName));
-        assertFalse(canTaskDeleteFromDatabase(taskName));
+        // CleanUp
+        deleteTestTask(taskName);
     }
 }
